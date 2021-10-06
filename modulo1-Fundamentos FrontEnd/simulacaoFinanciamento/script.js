@@ -22,15 +22,19 @@ function simular () {
     document.getElementById("jurosam").valueAsNumber = jurosam;
 
     var tbody = document.querySelector("tbody");
-    for(var i = 0; i<5; i++){
+    var jurosTotal = 0;
+    for(var i = 0; i<prestacoes; i++){
         var saldodevedor = valor - i * amortizacao;
         var jurosPrestacao = saldodevedor *jurosam;
+        jurosTotal += jurosPrestacao;
         var totalprestacao = amortizacao + jurosPrestacao;
 
+        if(i < 5){
         var tr = tbody.children[i];
         tr.children[1].textContent=amortizacao.toFixed(2);
         tr.children[2].textContent=jurosPrestacao.toFixed(2);
         tr.children[3].textContent=totalprestacao.toFixed(2);
+        }
     }
-
+    document.getElementById("jurostotal").value = jurosTotal.toFixed(2);
 }
